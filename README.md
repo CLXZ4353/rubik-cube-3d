@@ -1,5 +1,9 @@
 # Rubik's Cube 3D
 
+[![Live demo](https://img.shields.io/badge/live%20demo-rubik--cube--3d.rubik--cube--3d.workers.dev-007acc?style=for-the-badge)](https://rubik-cube-3d.rubik-cube-3d.workers.dev/)
+
+**Try it live → https://rubik-cube-3d.rubik-cube-3d.workers.dev/**
+
 Interactive 3D 3×3 Rubik's Cube simulator with a **real solver** (no faked
 algorithms). Built with plain **Three.js** and vanilla JS modules.
 
