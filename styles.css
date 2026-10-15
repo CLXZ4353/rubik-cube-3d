@@ -1,0 +1,222 @@
+:root {
+  --bg: #0e1116;
+  --panel: rgba(18, 22, 28, 0.72);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --text: #e8ecf1;
+  --text-dim: #9aa4b2;
+  --accent: #4da3ff;
+  --accent-2: #ffd60a;
+  --good: #35d07f;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#scene {
+  position: fixed;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+/* ---------------- UI overlay ---------------- */
+#ui {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 14px 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+#topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#topbar h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--text);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.badge {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(53, 208, 127, 0.16);
+  color: var(--good);
+  border: 1px solid rgba(53, 208, 127, 0.4);
+}
+
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  pointer-events: auto;
+  max-width: 94vw;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.06s ease, background 0.15s ease, opacity 0.15s ease;
+}
+.btn:hover:not(:disabled) { background: rgba(40, 48, 60, 0.85); }
+.btn:active:not(:disabled) { transform: translateY(1px); }
+.btn:disabled { opacity: 0.45; cursor: default; }
+.btn.primary {
+  background: linear-gradient(180deg, rgba(77, 163, 255, 0.28), rgba(77, 163, 255, 0.14));
+  border-color: rgba(77, 163, 255, 0.5);
+}
+.btn.danger {
+  background: linear-gradient(180deg, rgba(255, 92, 92, 0.28), rgba(255, 92, 92, 0.14));
+  border-color: rgba(255, 92, 92, 0.5);
+  color: #ffd7d7;
+}
+.btn.icon { padding: 9px 12px; font-weight: 700; }
+
+#status {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--text-dim);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 6px 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+#move-count { font-variant-numeric: tabular-nums; }
+/* Worker labels can be long ("Solving… b12 · 1.23M · 3.4s"): clip them, never
+   let the status bar grow. */
+#solver-status { max-width: 24em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+#timer {
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-2);
+  min-width: 6em; /* room for "Timer 10:00", so the bar doesn't jitter */
+}
+#timer.low { color: #ff6b6b; }
+
+/* ---------------- Help overlay ---------------- */
+#help {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 10, 14, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 20px;
+}
+#help > div, #help { }
+#help h2 {
+  margin: 0 0 14px;
+  font-size: 22px;
+  text-align: center;
+}
+#help .help-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  gap: 14px;
+  max-width: 720px;
+}
+#help .help-grid > div {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+#help h3 { margin: 0 0 8px; font-size: 14px; color: var(--accent); }
+#help p { margin: 4px 0; font-size: 13px; color: var(--text-dim); }
+#help .hint { text-align: center; margin-top: 16px; font-size: 13px; color: var(--text-dim); }
+#help b { color: var(--text); }
+
+.hidden { display: none !important; }
+
+/* ---------------- Solve / timeout popups ---------------- */
+/* Glyph layer only: no plate. Contrast comes from a dark rim + soft halo so
+   the letters still read over a cube sticker of the same colour. */
+.gg-pop, .timeout-pop {
+  position: fixed;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  z-index: 30;
+  pointer-events: none;
+  font-weight: 900;
+  letter-spacing: 4px;
+  line-height: 1;
+  animation: gg-pop 2.4s ease-out forwards; /* TIMEOUT pops like GG */
+}
+.gg-pop { font-size: clamp(64px, 18vw, 200px); }
+.timeout-pop { font-size: clamp(40px, 9vw, 130px); } /* "TIMEOUT" is longer than "GG", so it needs to fit the width */
+.gg-pop span, .timeout-pop span {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.03em rgba(8, 10, 14, 0.85);
+  filter: drop-shadow(0 0 10px rgba(8, 10, 14, 0.9));
+}
+.gg-pop span {
+  background-image: linear-gradient(160deg, #ffffff 0%, #ffd60a 45%, #4da3ff 100%);
+  text-shadow: 0 10px 34px rgba(77, 163, 255, 0.5);
+}
+.timeout-pop span {
+  background-image: linear-gradient(160deg, #ffecec 0%, #ff4b4b 45%, #b3161b 100%);
+  text-shadow: 0 10px 34px rgba(255, 75, 75, 0.55);
+}
+
+@keyframes gg-pop {
+  0%   { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+  14%  { transform: translate(-50%, -50%) scale(1.12); opacity: 1; }
+  26%  { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  88%  { transform: translate(-50%, -50%) scale(1); opacity: 1; } /* held solid; only the tail fades */
+  100% { transform: translate(-50%, -50%) scale(1.25); opacity: 0; }
+}
+
+/* ---------------- Mobile ---------------- */
+@media (max-width: 640px) {
+  #topbar h1 { font-size: 17px; }
+  .btn { font-size: 13px; padding: 8px 12px; }
+  #status { font-size: 12px; gap: 10px; flex-wrap: wrap; }
+  #help .help-grid { grid-template-columns: 1fr; max-width: 360px; }
+}

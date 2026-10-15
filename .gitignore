@@ -1,0 +1,18 @@
+node_modules/
+package-lock.json
+
+# generated pre-computed solver tables (regenerate with npm run pregen)
+data/
+
+# screenshots + logs from the browser tests
+shots*/
+*_shots*/
+shot*.png
+*.log
+tmp_srv.*
+
+# Windows artifact of a `> nul` redirect
+nul
+
+# exploratory one-off scripts (moved out of the real test set)
+tests/scratch/

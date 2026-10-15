@@ -1,0 +1,18 @@
+{
+  "name": "rubik-cube-3d",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Interactive 3D Rubik's Cube simulator (Three.js, no build step)",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node tests/orientation.test.mjs && node tests/logic.test.mjs && node tests/solvecheck.mjs && node tests/timer.test.mjs",
+    "pregen": "node tests/pregen_two_phase.mjs",
+    "pregenCE": "node tests/pregen_jointCE.mjs",
+    "check": "node tests/pdb_manifest.mjs --check",
+    "manifest": "node tests/pdb_manifest.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.64.0"
+  }
+}
