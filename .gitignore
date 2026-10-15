@@ -14,5 +14,20 @@ tmp_srv.*
 # Windows artifact of a `> nul` redirect
 nul
 
+# deploy staging dir (copy of the static files, built by hand for wrangler)
+dist/
+
+# scratch output from wrangler runs / one-off API probes
+tmp_*.mjs
+tmp_srv.*
+wrangler_login.*
+
 # exploratory one-off scripts (moved out of the real test set)
 tests/scratch/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

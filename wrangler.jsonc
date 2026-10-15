@@ -1,0 +1,19 @@
+// Cloudflare deploy config. The site is static and needs no build step: dist/ is
+// just the files the browser loads (index.html, styles.css, favicon.svg, src/,
+// vendor/) plus _headers, which turns on cross-origin isolation so
+// SharedArrayBuffer works and the solver's Cancel button stays usable.
+//
+// Deploy:  npx wrangler deploy
+// dist/ is a plain copy of those files (it is git-ignored).
+//
+// NOTE: Cloudflare has folded new "Pages" projects into Workers with static
+// assets — `wrangler pages deploy` in the current CLI routes here anyway, and
+// the free plan covers it (no request cap for static assets, *.workers.dev URL).
+{
+  "name": "rubik-cube-3d",
+  "compatibility_date": "2024-09-23",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./dist"
+  }
+}
