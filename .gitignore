@@ -4,8 +4,10 @@ package-lock.json
 # generated pre-computed solver tables (regenerate with npm run pregen)
 data/
 
-# screenshots + logs from the browser tests
+# screenshots + logs from the browser tests. shots/ is the one kept in the repo:
+# README.md embeds shots/02_after_scramble.png as the preview image.
 shots*/
+!shots/
 *_shots*/
 shot*.png
 *.log
