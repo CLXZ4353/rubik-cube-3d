@@ -15,6 +15,8 @@
   "workers_dev": true,
   "assets": {
     "directory": "./dist",
+    // Workers static assets cap one file at 25 MiB. .assetsignore omits the
+    // 111 MB fast-solver table; /3d then rebuilds the exact fallback locally.
     // The app is one document and its routes are paths, so an unknown path
     // returns index.html and the router paints the Not Found page inside the
     // shell. Same rule server.mjs applies locally (extension-less paths only),

@@ -3,9 +3,13 @@
 //   node tools/build_dist.mjs
 //
 // The 3D app and the solver read data/ (the PDB tables + pdb_meta.json) over
-// the same origin, so data/ has to ship too — the .pdb files are 111 MB of
+// the same origin, so data/ has to ship too - the .pdb files are 111 MB of
 // prebuilt tables, which is why the manifest prints the total and why the
 // immutable cache rule in server.mjs / _headers matters.
+//
+// Cloudflare Workers static assets cap one file at 25 MiB, so .assetsignore
+// excludes data/jointCE.pdb from the upload; the browser then rebuilds the
+// exact, slower fallback tables locally. The rest of data/ still deploys.
 //
 // A JSON manifest (name, size, fnv hash) is written so the deploy can be
 // checked afterwards without re-reading every byte.
@@ -19,6 +23,7 @@ const DIRS = ['src', 'styles', 'vendor', 'data'];
 export async function build() {
   await rm('dist', { recursive: true, force: true });
   await mkdir('dist');
+  await cp('.assetsignore', 'dist/.assetsignore');
   const manifest = {};
   let bytes = 0;
   for (const name of TOP) {

@@ -46,19 +46,38 @@ because it carries the version. If you change the move table, the coordinates,
 or a pregen script, re-run **both** pregen scripts so every file gets the new
 `v`.
 
-The PDB tables are git-ignored, so a git-based deploy ships no solver tables at
-all: run `npm run pregen && npm run pregenCE` on the host (or ship `data/`
-out-of-band). The small curated JSON in `data/algdb/` and `data/cases/keys/` is
-checked in, so the database and trainers work on a fresh clone. Put
-`npm run check` in CI — it exits 1 when `jointCE.pdb` is missing, stamped
-for another code version, or hashed differently, so a misconfigured deploy fails
-loudly instead of quietly solving in seconds.
+The PDB tables are git-ignored. A fresh clone still works: the browser builds
+the exact fallback tables on first use. Self-hosted deployments that want the
+fast path can run `npm run pregen && npm run pregenCE` on the host, or ship
+`data/` out-of-band. The small curated JSON in `data/algdb/` and
+`data/cases/keys/` is checked in, so the database and trainers work everywhere.
+
+Cloudflare Workers cap one static asset at **25 MiB**, so `.assetsignore` omits
+the 111 MB `jointCE.pdb` from that deployment; the 3D page detects the missing
+table and uses the exact fallback. Put `npm run check` in CI for the
+full-table/self-hosted path — it exits 1 when `jointCE.pdb` is missing, stamped
+for another code version, or hashed differently.
 
 ```
 node tests/pregen_two_phase.mjs   # phase-1 pairwise PDBs + CS + ES (~8 MB)
 node tests/pregen_jointCE.mjs     # joint corner-class x edge PDB (111 MB, once)
 node tests/pdb_manifest.mjs       # re-stamp data/pdb_meta.json for files on disk
 ```
+
+## Deploy
+
+The Worker `rubik-cube-3d` serves the built `dist/` tree:
+
+```
+npm run dist
+npx wrangler deploy
+```
+
+Live: **https://rubik-cube-3d.rubik-cube-3d.workers.dev/**
+
+`.assetsignore` excludes only `data/jointCE.pdb` so the upload fits Cloudflare's
+25 MiB per-asset limit. Everything else — the SPA, curated datasets, styles,
+and the smaller pre-computed tables — is deployed normally.
 
 ## Controls
 

@@ -1,0 +1,5 @@
+# Cloudflare Workers static assets have a 25 MiB per-file limit. The 111 MB
+# fast-solver table cannot be uploaded here; without it the browser rebuilds the
+# exact, slower fallback tables locally. Keep this exclusion in sync with
+# tools/build_dist.mjs and the deploy notes in README.md.
+data/jointCE.pdb
