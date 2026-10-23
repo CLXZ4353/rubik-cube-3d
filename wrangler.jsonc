@@ -14,6 +14,11 @@
   "compatibility_date": "2024-09-23",
   "workers_dev": true,
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    // The app is one document and its routes are paths, so an unknown path
+    // returns index.html and the router paints the Not Found page inside the
+    // shell. Same rule server.mjs applies locally (extension-less paths only),
+    // so /a/3x3 works the same in both.
+    "not_found_handling": "single-page-application"
   }
 }

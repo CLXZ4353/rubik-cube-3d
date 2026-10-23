@@ -5,7 +5,7 @@
 import * as THREE from 'three';
 import { CubeState } from './CubeState.js';
 import { Cubie } from './Cubie.js';
-import { inverseMove, AXES, ALL_MOVES, ALL_MOVES_FULL } from './moves.js';
+import { inverseMove, AXES, ALL_MOVES, ALL_MOVES_FULL, moveIncludesLayer } from './moves.js';
 import { generateScramble } from './Scrambler.js';
 import { FACE_CENTERS } from './Orientation.js';
 import { DUR_TURN_90, DUR_TURN_180, DUR_SCRAMBLE, DUR_SOLVE } from './constants.js';
@@ -89,7 +89,7 @@ export class Cube {
     const { move, speed, record } = item;
     const affected = this.cubies.filter((cb) => {
       const c = cb.logical;
-      return move.whole || c.pos[AXES[move.axis]] === move.layer;
+      return move.whole || moveIncludesLayer(move, c.pos[AXES[move.axis]]);
     });
     const pivot = new THREE.Object3D();
     this.group.add(pivot);

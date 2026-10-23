@@ -1,9 +1,14 @@
-// Exact discrete rotation math + Singmaster move definitions.
+// Exact discrete rotation math + Singmaster move definitions, generalized to N x N.
 //
 // Rotations are 3x3 INTEGER matrices (row-major) from the 24-element
 // orientation-preserving symmetry group of the cube. Applying and composing
 // them never introduces floating point error, which keeps the logical state
 // exact no matter how many moves are executed.
+//
+// A move is { axis, layers[], angle, whole } — `layers` are the layer
+// COORDINATES it turns (see layerCoord), so the same object shape drives a
+// 2x2, a 3x3 or a 5x5. `face` and `layer` (=layers[0]) are kept for the
+// older code paths (UI labels, undo history, the 3x3 solver's move table).
 
 export const ID3 = [1, 0, 0, 0, 1, 0, 0, 0, 1];
 
@@ -67,78 +72,150 @@ export const R24 = (() => {
 
 export const R24_INDEX = new Map(R24.map((m, i) => [matKey(m), i]));
 
-/**
- * Move definitions.
- *
- * `cw` is the signed angle (degrees, right-hand rule) of a CLOCKWISE turn
- * as viewed from the face, i.e. exactly what Singmaster notation means:
- *
- *   U: top layer clockwise seen from above:  back→right→front→left
- *   R: right layer clockwise seen from +X:   front→top→back→bottom
- *   F: front layer clockwise seen from +Z:   top→right→bottom→left
- *
- * Inner slices follow the standard equivalences M = L', E = D', S = F',
- * and whole-cube rotations follow x = R', y = U', z = F'.
- */
-export const FACE_DEFS = {
-  U: { axis: 'Y', layer: 1, cw: -90 },
-  D: { axis: 'Y', layer: -1, cw: 90 },
-  R: { axis: 'X', layer: 1, cw: -90 },
-  L: { axis: 'X', layer: -1, cw: 90 },
-  F: { axis: 'Z', layer: 1, cw: -90 },
-  B: { axis: 'Z', layer: -1, cw: 90 },
-  M: { axis: 'X', layer: 0, cw: -90 }, // M = L'
-  E: { axis: 'Y', layer: 0, cw: -90 }, // E = D'
-  S: { axis: 'Z', layer: 0, cw: 90 },  // S = F'
-  x: { axis: 'X', layer: 0, cw: 90, whole: true }, // x = R'
-  y: { axis: 'Y', layer: 0, cw: 90, whole: true }, // y = U'
-  z: { axis: 'Z', layer: 0, cw: 90, whole: true }, // z = F'
-};
-
 /** Coordinate name for an axis letter. */
 export const AXES = { X: 'x', Y: 'y', Z: 'z' };
 
-/** Build a move object: { face, axis, layer, whole, angle (degrees) } */
-export function makeMove(face, mod = '') {
-  const def = FACE_DEFS[face];
-  if (!def) throw new Error(`Unknown move: "${face}"`);
+/** Layer coordinate of the i-th (1-based) outer layer of a size-N cube.
+ * Odd N → -(N-1)/2 … +(N-1)/2 (a central layer exists);
+ * even N → ±1, ±3, … (no central layer), so everything stays integral. */
+export function layerCoord(size, i) {
+  if (size % 2 === 1) return (size - 1) / 2 - (i - 1);
+  return size - (2 * i - 1);
+}
+
+/** Every layer coordinate of a size-N cube, outermost first. */
+export function layerCoords(size) {
+  const out = [];
+  for (let i = 1; i <= size; i++) out.push(layerCoord(size, i));
+  return out;
+}
+
+/** The inner (slice) layer coordinates: everything but the two outer ones. */
+export function sliceCoords(size) {
+  const all = layerCoords(size);
+  return all.slice(1, all.length - 1);
+}
+
+// `cw` is the signed angle (degrees, right-hand rule) of a CLOCKWISE turn as
+// viewed from that face, i.e. exactly what Singmaster notation means:
+//   U: back→right→front→left    R: front→top→back→bottom    F: top→right→bottom→left
+// Inner slices follow the face they are named after (M = L, E = D, S = F), and
+// whole-cube rotations follow their face letter (x = R, y = U, z = F).
+// `sign` is which end of the axis the face sits on (+1 or -1).
+export const FACE_DEFS = {
+  U: { axis: 'Y', cw: -90, sign: 1, kind: 'face' },
+  D: { axis: 'Y', cw: 90, sign: -1, kind: 'face' },
+  R: { axis: 'X', cw: -90, sign: 1, kind: 'face' },
+  L: { axis: 'X', cw: 90, sign: -1, kind: 'face' },
+  F: { axis: 'Z', cw: -90, sign: 1, kind: 'face' },
+  B: { axis: 'Z', cw: 90, sign: -1, kind: 'face' },
+  M: { axis: 'X', cw: 90, kind: 'slice' }, // M follows L
+  E: { axis: 'Y', cw: 90, kind: 'slice' }, // E follows D
+  S: { axis: 'Z', cw: -90, kind: 'slice' }, // S follows F
+  x: { axis: 'X', cw: -90, kind: 'whole' }, // x follows R
+  y: { axis: 'Y', cw: -90, kind: 'whole' }, // y follows U
+  z: { axis: 'Z', cw: -90, kind: 'whole' }, // z follows F
+};
+
+/** The letters whose outer layer is the U/D/R/L/F/B face, in face order. */
+export const FACE_LETTERS = ['U', 'D', 'R', 'L', 'F', 'B'];
+
+/** Parse a canonical face name ('R', 'Rw', '3Rw', 'M', 'y') into its parts. */
+export function faceInfo(name) {
+  const m = /^(\d*)([UDLRFBMESxyz])(w?)$/.exec(name);
+  if (!m) throw new Error(`Unknown move: "${name}"`);
+  const def = FACE_DEFS[m[2]];
+  const count = m[1] ? Number(m[1]) : (m[3] ? 2 : 1);
+  if (m[1] && !m[3]) throw new Error(`Unknown move: "${name}"`); // 2R needs the w
+  if (def.kind !== 'face' && count > 1) throw new Error(`Unknown move: "${name}"`);
+  return { def, count };
+}
+
+/** layers of a move on a size-N cube: 1 outer layer, n outer layers, slices, or all. */
+function faceLayers(def, n, size) {
+  if (def.kind === 'whole') return layerCoords(size);
+  if (def.kind === 'slice') {
+    const s = sliceCoords(size);
+    return s.length ? s : [0]; // a 2x2 has no slice: degenerate but harmless
+  }
+  const out = [];
+  for (let i = 1; i <= n; i++) out.push(def.sign * layerCoord(size, i));
+  return out;
+}
+
+/** Build a move object: { face, axis, layers[], angle, whole, layer }. */
+export function makeMove(face, mod = '', size = 3) {
+  const { def, count } = faceInfo(face);
+  const layers = faceLayers(def, count, size);
   const sign = mod === "'" ? -1 : 1;
   const times = mod === '2' ? 2 : 1;
-  return { face, axis: def.axis, layer: def.layer, whole: !!def.whole, angle: def.cw * times * sign };
+  return {
+    face,
+    axis: def.axis,
+    layers,
+    whole: def.kind === 'whole',
+    angle: def.cw * times * sign,
+    layer: layers[0],
+  };
 }
 
-/** Parse whitespace-separated notation, e.g. "R U2 F' x". */
-export function parseNotation(str) {
-  return String(str)
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean)
-    .map((token) => {
-      // suffix is "'" (inverse) or "2" (double); the old group ('2|2|')? also
-      // accepted R'2, which makeMove then mis-read as a plain R.
-      const m = /^([UDLRFBMESxyz])('|2)?$/.exec(token);
-      if (!m) throw new Error(`Invalid move token: "${token}"`);
-      const face = /^[xyz]$/.test(m[1]) ? m[1] : m[1].toUpperCase();
-      return makeMove(face, m[2] || '');
-    });
-}
-
-/** Canonical notation for a move object, e.g. "R", "R'", "R2". */
+/** Canonical name for a move object: "R", "R'", "R2", "Rw", "3Rw'", "M", "y2". */
 export function notation(move) {
-  const def = FACE_DEFS[move.face];
-  if (Math.abs(move.angle) === 180) return move.face + '2';
-  return move.face + (move.angle * def.cw < 0 ? "'" : '');
+  const { def, count } = faceInfo(move.face);
+  const wide = def.kind === 'face' && count > 1;
+  const name = (wide ? (count > 2 ? String(count) : '') + defLetter(def) + 'w' : defLetter(def));
+  const tail = Math.abs(move.angle) === 180 ? '2' : move.angle * def.cw < 0 ? "'" : '';
+  return name + tail;
 }
 
-/** The inverse move (R ↔ R', R2 ↔ R2). */
+/** The face letter of a FACE_DEFS entry (U/D/R/L/F/B/M/E/S/x/y/z). */
+function defLetter(def) {
+  for (const [k, v] of Object.entries(FACE_DEFS)) if (v === def) return k;
+  throw new Error('unknown def');
+}
+
+/** Canonical face name for one token: 'R' "R'" 'R2' 'r' 'Rw' "3Rw'" 'M' 'x'. */
+export function tokenFace(token) {
+  const m = /^(\d*)([UDLRFBMESudlrfbxyz])(w*)('2?|2?)$/.exec(token);
+  if (!m) throw new Error(`Invalid move token: "${token}"`);
+  const [, digits, letter, w, suffix] = m;
+  if (suffix.length > 1) throw new Error(`Invalid move token: "${token}"`); // R'2, R2'
+  if (w.length > 1) throw new Error(`Invalid move token: "${token}"`);
+  if (digits && !w) throw new Error(`Invalid move token: "${token}"`); // 2R needs the w
+  const lower = 'udlrfb'.includes(letter);
+  if (lower && (w || digits)) throw new Error(`Invalid move token: "${token}"`);
+  const base = 'udlrfb'.includes(letter) ? letter.toUpperCase() : letter;
+  if ('udlrfb'.includes(letter)) return base + 'w'; // r = Rw
+  return digits + base + w;
+}
+
+/** Parse whitespace-separated notation, e.g. "R U2 F' x Rw 3Rw' M y". */
+export function parseNotation(str, size = 3) {
+  const out = [];
+  for (const token of String(str).trim().split(/\s+/).filter(Boolean)) {
+    const face = tokenFace(token);
+    // The face may be longer than the token's own base ("r" -> "Rw"), so the
+    // modifier is read from the token itself, never by slicing at face.length.
+    const mod = token.endsWith('2') ? '2' : token.endsWith("'") ? "'" : '';
+    out.push(makeMove(face, mod, size));
+  }
+  return out;
+}
+
+/** The inverse move (R ↔ R', R2 ↔ R2, Rw ↔ Rw'). */
 export function inverseMove(move) {
   return { ...move, angle: -move.angle };
 }
 
-/** Exact 90°/180° integer matrix for a move. */
+/** Exact 90°/180° integer matrix for a move (the axis turn itself). */
 export function moveMatrix(move) {
   const q = Q[move.axis + (move.angle > 0 ? 'p' : 'm')];
   return Math.abs(move.angle) === 180 ? matMul(q, q) : q;
+}
+
+/** True when a layer coordinate belongs to this move. */
+export function moveIncludesLayer(move, coord) {
+  return move.layers.includes(coord);
 }
 
 /** The 18 basic face moves used by searches: U U' U2 D D' D2 ... B2 */

@@ -1,0 +1,406 @@
+{
+ "id": "PLL",
+ "puzzle": "3x3",
+ "name": "PLL",
+ "kind": "PLL",
+ "count": 21,
+ "groupField": "group",
+ "groups": [
+  "4-cycle edges + swap adjacent corners",
+  "4-cycle edges + swap diagonal corners",
+  "swap diagonal edges + swap adjacent corners",
+  "two swaps edges + solved corners",
+  "swap adjacent edges + swap adjacent corners",
+  "swap diagonal edges + swap diagonal corners",
+  "3-cycle edges + solved corners",
+  "swap adjacent edges + swap diagonal corners"
+ ],
+ "crossOrientations": {
+  "white": "z2",
+  "yellow": "",
+  "green": "x'",
+  "blue": "x",
+  "red": "z",
+  "orange": "z'"
+ },
+ "cases": [
+  {
+   "id": "PLL_1",
+   "name": "Aa-Perm",
+   "group": "4-cycle edges + swap adjacent corners",
+   "setup": "L2 D' B2 D F2 D' B2 D F2 L2 U U'",
+   "stickers": "UUUUUUUUUFFBFFFFFFLRFRRRRRRRBRBBBBBBBLLLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "x R' U R' D2 R U' R' D2 R2 x'",
+     "htm": 11,
+     "qtm": 16,
+     "etm": 11,
+     "stm": 9,
+     "gen": "3GEN (U D R)"
+    }
+   ],
+   "primary": "x R' U R' D2 R U' R' D2 R2 x'"
+  },
+  {
+   "id": "PLL_2",
+   "name": "Ab-Perm",
+   "group": "4-cycle edges + swap adjacent corners",
+   "setup": "L2 D F2 D' B2 D F2 D' B2 L2 U'",
+   "stickers": "UUUUUUUUULLFFFFFFFRFRRRRRRRBRLBBBBBBFBBLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "x R2 D2 R U R' D2 R U' R x'",
+     "htm": 11,
+     "qtm": 16,
+     "etm": 11,
+     "stm": 9,
+     "gen": "3GEN (U D R)"
+    }
+   ],
+   "primary": "x R2 D2 R U R' D2 R U' R x'"
+  },
+  {
+   "id": "PLL_3",
+   "name": "E-Perm",
+   "group": "4-cycle edges + swap diagonal corners",
+   "setup": "F2 U F2 U' L2 D R2 B2 D' L2 U R2 U' F2 U'",
+   "stickers": "UUUUUUUUUBLFFFFFFFRFLRRRRRRFRBBBBBBBLBRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "x' R U' R' D R U R' D' R U R' D R U' R' D' x",
+     "htm": 18,
+     "qtm": 20,
+     "etm": 18,
+     "stm": 16,
+     "gen": "3GEN (U D R)"
+    }
+   ],
+   "primary": "x' R U' R' D R U R' D' R U R' D R U' R' D' x"
+  },
+  {
+   "id": "PLL_4",
+   "name": "F-Perm",
+   "group": "swap diagonal edges + swap adjacent corners",
+   "setup": "L2 U L2 B2 U2 B2 U L2 D' B2 D B2 U2 L2 U' U2",
+   "stickers": "UUUUUUUUUBFLFFFFFFFLBRRRRRRLBFBBBBBBRRRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R",
+     "htm": 18,
+     "qtm": 19,
+     "etm": 18,
+     "stm": 18,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R"
+  },
+  {
+   "id": "PLL_5",
+   "name": "Ga-Perm",
+   "group": "4-cycle edges + swap adjacent corners",
+   "setup": "F2 L2 D R2 D' R2 U R2 U' R2 L2 F2 U U2",
+   "stickers": "UUUUUUUUUBLLFFFFFFFRBRRRRRRLBFBBBBBBRFRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R2 U R' U R' U' R U' R2 U' D R' U R D'",
+     "htm": 15,
+     "qtm": 17,
+     "etm": 15,
+     "stm": 15,
+     "gen": "3GEN (U D R)"
+    }
+   ],
+   "primary": "R2 U R' U R' U' R U' R2 U' D R' U R D'"
+  },
+  {
+   "id": "PLL_6",
+   "name": "Gb-Perm",
+   "group": "4-cycle edges + swap adjacent corners",
+   "setup": "L2 B2 F2 U F2 D' L2 D L2 U' B2 L2 U' U2",
+   "stickers": "UUUUUUUUUBFLFFFFFFFBBRRRRRRLRFBBBBBBRLRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R' U' R U D' R2 U R' U R U' R U' R2 D",
+     "htm": 15,
+     "qtm": 17,
+     "etm": 15,
+     "stm": 15,
+     "gen": "3GEN (U D R)"
+    }
+   ],
+   "primary": "R' U' R U D' R2 U R' U R U' R U' R2 D"
+  },
+  {
+   "id": "PLL_7",
+   "name": "Gc-Perm",
+   "group": "4-cycle edges + swap adjacent corners",
+   "setup": "B2 L2 D' R2 D R2 U' R2 U R2 L2 B2 U' U2",
+   "stickers": "UUUUUUUUUBFLFFFFFFFRBRRRRRRLLFBBBBBBRBRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R2 U' R U' R U R' U R2 U D' R U' R' D",
+     "htm": 15,
+     "qtm": 17,
+     "etm": 15,
+     "stm": 15,
+     "gen": "3GEN (U D R)"
+    }
+   ],
+   "primary": "R2 U' R U' R U R' U R2 U D' R U' R' D"
+  },
+  {
+   "id": "PLL_8",
+   "name": "Gd-Perm",
+   "group": "4-cycle edges + swap adjacent corners",
+   "setup": "L2 B2 F2 U' B2 D L2 D' L2 U F2 L2 U U2",
+   "stickers": "UUUUUUUUUBRLFFFFFFFFBRRRRRRLBFBBBBBBRLRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R' U' D R2 U' R U' R' U R' U R2 D'",
+     "htm": 15,
+     "qtm": 17,
+     "etm": 15,
+     "stm": 15,
+     "gen": "3GEN (U D R)"
+    }
+   ],
+   "primary": "R U R' U' D R2 U' R U' R' U R' U R2 D'"
+  },
+  {
+   "id": "PLL_9",
+   "name": "H-Perm",
+   "group": "two swaps edges + solved corners",
+   "setup": "R2 B2 F2 L2 D R2 B2 F2 L2 U'",
+   "stickers": "UUUUUUUUUFBFFFFFFFRLRRRRRRRBFBBBBBBBLRLLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "M2 U M2 U2 M2 U M2",
+     "htm": 7,
+     "qtm": 12,
+     "etm": 3,
+     "stm": 3,
+     "gen": "1GEN (U)"
+    }
+   ],
+   "primary": "M2 U M2 U2 M2 U M2"
+  },
+  {
+   "id": "PLL_10",
+   "name": "Ja-Perm",
+   "group": "swap diagonal edges + swap adjacent corners",
+   "setup": "B2 R2 U' R2 D B2 D' B2 U B2 U' U2",
+   "stickers": "UUUUUUUUUBBLFFFFFFFFBRRRRRRLLFBBBBBBRRRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "L U' R' U L' U2 R U' R' U2 R",
+     "htm": 11,
+     "qtm": 13,
+     "etm": 11,
+     "stm": 11,
+     "gen": "3GEN (U L R)"
+    }
+   ],
+   "primary": "L U' R' U L' U2 R U' R' U2 R"
+  },
+  {
+   "id": "PLL_11",
+   "name": "Jb-Perm",
+   "group": "swap adjacent edges + swap adjacent corners",
+   "setup": "L2 D F2 D' F2 U F2 U' F2 L2 U' U2",
+   "stickers": "UUUUUUUUUBLLFFFFFFFBBRRRRRRLFFBBBBBBRRRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R' F' R U R' U' R' F R2 U' R'",
+     "htm": 13,
+     "qtm": 14,
+     "etm": 13,
+     "stm": 13,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U R' F' R U R' U' R' F R2 U' R'"
+  },
+  {
+   "id": "PLL_12",
+   "name": "Na-Perm",
+   "group": "swap diagonal edges + swap diagonal corners",
+   "setup": "L2 F2 U2 F2 U' F2 L2 U2 L2 U' F2 U2 L2 U'",
+   "stickers": "UUUUUUUUUBFFFFFFFFRLLRRRRRRFBBBBBBBBLRRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R'",
+     "htm": 21,
+     "qtm": 23,
+     "etm": 21,
+     "stm": 21,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R'"
+  },
+  {
+   "id": "PLL_13",
+   "name": "Nb-Perm",
+   "group": "swap diagonal edges + swap diagonal corners",
+   "setup": "L2 B2 U2 B2 U B2 L2 U2 L2 U B2 U2 L2 U'",
+   "stickers": "UUUUUUUUUBBFFFFFFFRRLRRRRRRFFBBBBBBBLLRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R' U R U' R' F' U' F R U R' F R' F' R U' R",
+     "htm": 17,
+     "qtm": 17,
+     "etm": 17,
+     "stm": 17,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R' U R U' R' F' U' F R U R' F R' F' R U' R"
+  },
+  {
+   "id": "PLL_14",
+   "name": "Ra-Perm",
+   "group": "swap adjacent edges + swap adjacent corners",
+   "setup": "L2 U B2 U2 L2 U' L2 F2 U' B2 U F2 U2 L2 U' U2",
+   "stickers": "UUUUUUUUUBBLFFFFFFFLBRRRRRRLRFBBBBBBRFRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U' R' U' R U R D R' U' R D' R' U2 R'",
+     "htm": 15,
+     "qtm": 16,
+     "etm": 15,
+     "stm": 15,
+     "gen": "3GEN (U D R)"
+    }
+   ],
+   "primary": "R U' R' U' R U R D R' U' R D' R' U2 R'"
+  },
+  {
+   "id": "PLL_15",
+   "name": "Rb-Perm",
+   "group": "swap adjacent edges + swap adjacent corners",
+   "setup": "F2 R2 U' L2 U R2 B2 R2 F2 D R2 B2 U F2 U' U2",
+   "stickers": "UUUUUUUUUBRLFFFFFFFLBRRRRRRLFFBBBBBBRBRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R2 F R U R U' R' F' R U2 R' U2 R",
+     "htm": 13,
+     "qtm": 16,
+     "etm": 13,
+     "stm": 13,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R2 F R U R U' R' F' R U2 R' U2 R"
+  },
+  {
+   "id": "PLL_16",
+   "name": "T-Perm",
+   "group": "swap diagonal edges + swap adjacent corners",
+   "setup": "L2 D F2 U' F2 L2 D' B2 U B2 U' U2",
+   "stickers": "UUUUUUUUUBBLFFFFFFFRBRRRRRRLFFBBBBBBRLRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R' U' R' F R2 U' R' U' R U R' F'",
+     "htm": 14,
+     "qtm": 15,
+     "etm": 14,
+     "stm": 14,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U R' U' R' F R2 U' R' U' R U R' F'"
+  },
+  {
+   "id": "PLL_17",
+   "name": "Ua-Perm",
+   "group": "3-cycle edges + solved corners",
+   "setup": "L2 U' F2 R2 B2 D B2 R2 F2 U2 L2 U2",
+   "stickers": "UUUUUUUUUBLBFFFFFFLRLRRRRRRFFFBBBBBBRBRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "M2 U M U2 M' U M2",
+     "htm": 7,
+     "qtm": 10,
+     "etm": 3,
+     "stm": 3,
+     "gen": "1GEN (U)"
+    }
+   ],
+   "primary": "M2 U M U2 M' U M2"
+  },
+  {
+   "id": "PLL_18",
+   "name": "Ub-Perm",
+   "group": "3-cycle edges + solved corners",
+   "setup": "L2 U2 F2 R2 B2 D' B2 R2 F2 U L2 U2",
+   "stickers": "UUUUUUUUUBRBFFFFFFLBLRRRRRRFFFBBBBBBRLRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "M2 U' M U2 M' U' M2",
+     "htm": 7,
+     "qtm": 10,
+     "etm": 3,
+     "stm": 3,
+     "gen": "1GEN (U)"
+    }
+   ],
+   "primary": "M2 U' M U2 M' U' M2"
+  },
+  {
+   "id": "PLL_19",
+   "name": "V-Perm",
+   "group": "swap adjacent edges + swap diagonal corners",
+   "setup": "B2 U L2 D2 R2 F2 D R2 D L2 U2 B2 U' B2 U' U",
+   "stickers": "UUUUUUUUURRLFFFFFFFLBRRRRRRLBRBBBBBBBFFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R' U R' U' y R' F' R2 U' R' U R' F R F",
+     "htm": 15,
+     "qtm": 17,
+     "etm": 15,
+     "stm": 14,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R' U R' U' y R' F' R2 U' R' U R' F R F"
+  },
+  {
+   "id": "PLL_20",
+   "name": "Y-Perm",
+   "group": "swap adjacent edges + swap diagonal corners",
+   "setup": "L2 D2 F2 U R2 D' R2 L2 D' L2 U F2 U2 L2 U' U'",
+   "stickers": "UUUUUUUUULLRFFFFFFBFFRRRRRRRBLBBBBBBFRBLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "F R U' R' U' R U R' F' R U R' U' R' F R F'",
+     "htm": 17,
+     "qtm": 17,
+     "etm": 17,
+     "stm": 17,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "F R U' R' U' R U R' F' R U R' U' R' F R F'"
+  },
+  {
+   "id": "PLL_21",
+   "name": "Z-Perm",
+   "group": "two swaps edges + solved corners",
+   "setup": "F2 L2 U F2 U' L2 F2 L2 U' L2 U L2 U",
+   "stickers": "UUUUUUUUURFRFFFFFFBLBRRRRRRLBLBBBBBBFRFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "M' U M2 U M2 U M' U2 M2",
+     "htm": 9,
+     "qtm": 13,
+     "etm": 4,
+     "stm": 4,
+     "gen": "1GEN (U)"
+    }
+   ],
+   "primary": "M' U M2 U M2 U M' U2 M2"
+  }
+ ]
+}

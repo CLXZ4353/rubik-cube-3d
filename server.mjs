@@ -70,6 +70,19 @@ function parsePath(url) {
   }
 }
 
+// The SPA fallback answer: index.html, never cached, so a typo route costs one
+// request the router can then show inside the shell.
+async function serveHtml(res, html, st, req) {
+  if (req.method === 'HEAD') {
+    res.writeHead(200, { 'Content-Type': MIME['.html'], 'Cache-Control': 'no-cache', ...SECURITY, 'Content-Length': String(st.size) });
+    res.end();
+    return;
+  }
+  const fd = openSync(html);
+  res.writeHead(200, { 'Content-Type': MIME['.html'], 'Cache-Control': 'no-cache', 'Content-Length': String(st.size), ...SECURITY });
+  createReadStream(html, { fd }).pipe(res);
+}
+
 const server = createServer(async (req, res) => {
  try {
   if (req.method !== 'GET' && req.method !== 'HEAD') {
@@ -100,6 +113,21 @@ const server = createServer(async (req, res) => {
   try {
     st = await stat(file);
   } catch {
+    // SPA fallback: the app is one document and the routes are paths the router
+    // decides on, so an unknown path must load index.html and let the router
+    // show its Not Found page (with the nav) instead of a bare browser 404.
+    // Only extension-less, non-asset paths fall back: a missing .pdb/.js/.json
+    // has to stay a 404 or the solver would fetch HTML as if it were a table.
+    if (ext === '' && !pathname.startsWith('/data/') && !pathname.startsWith('/src/')) {
+      const html = join(root, 'index.html');
+      try {
+        const hs = await stat(html);
+        serveHtml(res, html, hs, req);
+      } catch {
+        sendError(res, 404, 'Not found');
+      }
+      return;
+    }
     sendError(res, 404, 'Not found');
     return;
   }

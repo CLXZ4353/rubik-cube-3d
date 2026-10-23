@@ -1,0 +1,1061 @@
+{
+ "id": "OLL",
+ "puzzle": "3x3",
+ "name": "OLL",
+ "kind": "OLL",
+ "count": 57,
+ "groupField": "group",
+ "groups": [
+  "3 corners twisted / all four edges flipped",
+  "3 corners twisted / 2 edges flipped (adjacent)",
+  "3 corners twisted / 2 edges flipped (diagonal)",
+  "2 corners twisted (diagonal) / all four edges flipped",
+  "2 corners twisted (adjacent) / all four edges flipped",
+  "all corners oriented / all four edges flipped",
+  "3 corners twisted / no edges flipped",
+  "2 corners twisted (adjacent) / no edges flipped",
+  "2 corners twisted (diagonal) / no edges flipped",
+  "all corners oriented / 2 edges flipped (adjacent)",
+  "2 corners twisted (adjacent) / 2 edges flipped (adjacent)",
+  "2 corners twisted (adjacent) / 2 edges flipped (diagonal)",
+  "2 corners twisted (diagonal) / 2 edges flipped (adjacent)",
+  "2 corners twisted (diagonal) / 2 edges flipped (diagonal)",
+  "all corners oriented / 2 edges flipped (diagonal)"
+ ],
+ "crossOrientations": {
+  "white": "z2",
+  "yellow": "",
+  "green": "x'",
+  "blue": "x",
+  "red": "z",
+  "orange": "z'"
+ },
+ "cases": [
+  {
+   "id": "OLL_1",
+   "name": "OLL 1",
+   "group": "3 corners twisted / all four edges flipped",
+   "setup": "D' R2 D R2 U2 R2 B2 R2 U' L2 F2 D R' F L' F R F U2 F' L' U",
+   "stickers": "LLLFUBRRRFUBFFFFFFUUURRRRRRBUFBBBBBBUUULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U2 R2 F R F' U2 R' F R F'",
+     "htm": 11,
+     "qtm": 14,
+     "etm": 11,
+     "stm": 11,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U2 R2 F R F' U2 R' F R F'"
+  },
+  {
+   "id": "OLL_2",
+   "name": "OLL 2",
+   "group": "3 corners twisted / all four edges flipped",
+   "setup": "B2 D' R2 F2 U' F2 R2 U2 R2 D L2 L' F R U2 F' R U2 L' U'",
+   "stickers": "BBRLURFFRLUUFFFFFFFUBRRRRRRUULBBBBBBUUULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "F R U R' U' F' Fw R U R' U' Fw'",
+     "htm": 12,
+     "qtm": 14,
+     "etm": 12,
+     "stm": 14,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "F R U R' U' F' Fw R U R' U' Fw'"
+  },
+  {
+   "id": "OLL_3",
+   "name": "OLL 3",
+   "group": "3 corners twisted / all four edges flipped",
+   "setup": "F2 U' F2 R2 U' F2 U' F2 U2 R2 U F2 L' B' R U2 B' R' B2 L",
+   "stickers": "LBBLURFFULUFFFFFFFRUURRRRRRRUUBBBBBBBUULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Fw R U R' U' Fw' U' F R U R' U' F'",
+     "htm": 13,
+     "qtm": 15,
+     "etm": 13,
+     "stm": 15,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "Fw R U R' U' Fw' U' F R U R' U' F'"
+  },
+  {
+   "id": "OLL_4",
+   "name": "OLL 4",
+   "group": "3 corners twisted / all four edges flipped",
+   "setup": "R2 U R2 F2 U R2 U R2 U2 F2 U' R2 B2 B' L F' U2 L F L2 B' U'",
+   "stickers": "RRUBUFBLLUUFFFFFFFUUFRRRRRRRUBBBBBBBUULLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Fw R U R' U' Fw' U F R U R' U' F'",
+     "htm": 13,
+     "qtm": 15,
+     "etm": 13,
+     "stm": 15,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "Fw R U R' U' Fw' U F R U R' U' F'"
+  },
+  {
+   "id": "OLL_5",
+   "name": "OLL 5",
+   "group": "3 corners twisted / 2 edges flipped (adjacent)",
+   "setup": "L2 U F2 L2 F2 U2 F2 L2 F2 U L2 U2 L' B' R B' R' B2 L",
+   "stickers": "LBBLUUFUULFFFFFFFFRRURRRRRRRUUBBBBBBBUULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw' U2 R U R' U Rw",
+     "htm": 7,
+     "qtm": 10,
+     "etm": 7,
+     "stm": 9,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "Rw' U2 R U R' U Rw"
+  },
+  {
+   "id": "OLL_6",
+   "name": "OLL 6",
+   "group": "3 corners twisted / 2 edges flipped (adjacent)",
+   "setup": "B2 U B2 R2 U2 R2 D' R2 D R2 U L' B D B D' B2 L U'",
+   "stickers": "RUUBUUBLLUUFFFFFFFUFFRRRRRRRRBBBBBBBUULLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw U2 R' U' R U' Rw'",
+     "htm": 7,
+     "qtm": 10,
+     "etm": 7,
+     "stm": 9,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "Rw U2 R' U' R U' Rw'"
+  },
+  {
+   "id": "OLL_7",
+   "name": "OLL 7",
+   "group": "3 corners twisted / 2 edges flipped (adjacent)",
+   "setup": "B2 D' F2 L2 B2 U' B2 L2 D2 B2 B' D2 F' R' B R' F' U",
+   "stickers": "FULUUBURBRUUFFFFFFRUURRRRRRBLUBBBBBBLFFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw U R' U R U2 Rw'",
+     "htm": 7,
+     "qtm": 10,
+     "etm": 7,
+     "stm": 9,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "Rw U R' U R U2 Rw'"
+  },
+  {
+   "id": "OLL_8",
+   "name": "OLL 8",
+   "group": "3 corners twisted / 2 edges flipped (adjacent)",
+   "setup": "U B2 D F2 R2 B2 U B2 R2 D2 B' D2 F L B' L F U' U2",
+   "stickers": "UFLUULRUBUBLFFFFFFUUFRRRRRRUUFBBBBBBRRBLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw' U' R U' R' U2 Rw",
+     "htm": 7,
+     "qtm": 10,
+     "etm": 7,
+     "stm": 9,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "Rw' U' R U' R' U2 Rw"
+  },
+  {
+   "id": "OLL_9",
+   "name": "OLL 9",
+   "group": "3 corners twisted / 2 edges flipped (adjacent)",
+   "setup": "F2 U' R2 D2 L2 B2 D L2 D R2 U R2 B' R2 F R' F' R' B R2",
+   "stickers": "BURUURLFUUUFFFFFFFRUBRRRRRRUBLBBBBBBULFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R' U' R' F R2 U R' U' F'",
+     "htm": 11,
+     "qtm": 12,
+     "etm": 11,
+     "stm": 11,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U R' U' R' F R2 U R' U' F'"
+  },
+  {
+   "id": "OLL_10",
+   "name": "OLL 10",
+   "group": "3 corners twisted / 2 edges flipped (adjacent)",
+   "setup": "R2 U L2 B2 R2 L2 U2 R2 U' L2 D' R2 D' R' D2 L' F R F L' F2 U'",
+   "stickers": "BRUUUFLUFBLUFFFFFFLUFRRRRRRRUUBBBBBBRBULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R' U R' F R F' R U2 R'",
+     "htm": 11,
+     "qtm": 12,
+     "etm": 11,
+     "stm": 11,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U R' U R' F R F' R U2 R'"
+  },
+  {
+   "id": "OLL_11",
+   "name": "OLL 11",
+   "group": "3 corners twisted / 2 edges flipped (adjacent)",
+   "setup": "B2 D L2 D' R2 L2 U L2 U' F2 D2 L' F' R F' R L2 B2 L U'",
+   "stickers": "BUUUUFLLFBUUFFFFFFLUFRRRRRRRRUBBBBBBRBULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw U R' U R' F R F' R U2 Rw'",
+     "htm": 11,
+     "qtm": 14,
+     "etm": 11,
+     "stm": 13,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "Rw U R' U R' F R F' R U2 Rw'"
+  },
+  {
+   "id": "OLL_12",
+   "name": "OLL 12",
+   "group": "3 corners twisted / 2 edges flipped (adjacent)",
+   "setup": "U L2 B2 R2 D2 F2 D' L2 F2 L2 D' R' B L2 B' L2 B R' L2 U'",
+   "stickers": "RRUBUUBULULFFFFFFFUFFRRRRRRRUBBBBBBBUULLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "F R U R' U' F' U F R U R' U' F'",
+     "htm": 13,
+     "qtm": 13,
+     "etm": 13,
+     "stm": 13,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "F R U R' U' F' U F R U R' U' F'"
+  },
+  {
+   "id": "OLL_13",
+   "name": "OLL 13",
+   "group": "3 corners twisted / 2 edges flipped (diagonal)",
+   "setup": "D B2 U2 B2 L2 U B2 U2 F2 U' B2 U' F2 U' L' U L2 D' L2 F U' F' L' U",
+   "stickers": "FLLUUUURBRUUFFFFFFRBURRRRRRBUUBBBBBBLFFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw U' Rw' U' Rw U Rw' F' U F",
+     "htm": 10,
+     "qtm": 14,
+     "etm": 10,
+     "stm": 14,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "Rw U' Rw' U' Rw U Rw' F' U F"
+  },
+  {
+   "id": "OLL_14",
+   "name": "OLL 14",
+   "group": "3 corners twisted / 2 edges flipped (diagonal)",
+   "setup": "B2 D' R2 U' R2 B2 D2 B2 D' R2 U R2 B2 U L' U' B U L U' L B' L'",
+   "stickers": "BBRUUULFUUUFFFFFFFRRBRRRRRRUULBBBBBBULFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R' F R U R' F' R F U' F'",
+     "htm": 10,
+     "qtm": 10,
+     "etm": 10,
+     "stm": 10,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R' F R U R' F' R F U' F'"
+  },
+  {
+   "id": "OLL_15",
+   "name": "OLL 15",
+   "group": "3 corners twisted / 2 edges flipped (diagonal)",
+   "setup": "U' B2 L2 D L2 F2 U2 F2 U F2 U F2 U2 L' D' U' B' U L U B'",
+   "stickers": "LBBUUUFFULUFFFFFFFRRURRRRRRRUUBBBBBBBLULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw' U' Rw R' U' R U Rw' U Rw",
+     "htm": 10,
+     "qtm": 14,
+     "etm": 10,
+     "stm": 14,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "Rw' U' Rw R' U' R U Rw' U Rw"
+  },
+  {
+   "id": "OLL_16",
+   "name": "OLL 16",
+   "group": "3 corners twisted / 2 edges flipped (diagonal)",
+   "setup": "D F2 L2 D' F2 D R2 D' F2 R2 U L2 D' F2 B' D U L U' B' U' L U'",
+   "stickers": "RRUUUUBLLUUFFFFFFFUFFRRRRRRRUBBBBBBBUBLLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw U Rw' R U R' U' Rw U' Rw'",
+     "htm": 10,
+     "qtm": 14,
+     "etm": 10,
+     "stm": 14,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "Rw U Rw' R U R' U' Rw U' Rw'"
+  },
+  {
+   "id": "OLL_17",
+   "name": "OLL 17",
+   "group": "2 corners twisted (diagonal) / all four edges flipped",
+   "setup": "U2 L2 B2 F2 D' R2 B2 D2 F2 U L2 F2 D' R' F' R U' F2 L' F L'",
+   "stickers": "UBRLURFFULUFFFFFFFRUBRRRRRRUUBBBBBBBLUULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R' U R' F R F' U2 R' F R F'",
+     "htm": 13,
+     "qtm": 14,
+     "etm": 13,
+     "stm": 13,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U R' U R' F R F' U2 R' F R F'"
+  },
+  {
+   "id": "OLL_18",
+   "name": "OLL 18",
+   "group": "2 corners twisted (adjacent) / all four edges flipped",
+   "setup": "R2 F2 U2 R2 U' B2 D' L2 D B2 R2 U' R' B L U L' U B' U2 R'",
+   "stickers": "BBULURFFULUFFFFFFFRURRRRRRRBULBBBBBBUUULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U2 R2 F R F' U2 M' U R U' Rw'",
+     "htm": 12,
+     "qtm": 16,
+     "etm": 11,
+     "stm": 12,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U2 R2 F R F' U2 M' U R U' Rw'"
+  },
+  {
+   "id": "OLL_19",
+   "name": "OLL 19",
+   "group": "2 corners twisted (adjacent) / all four edges flipped",
+   "setup": "L2 F2 L2 U R2 B2 F2 L2 D' L' F L D2 R2 B' L B' L U' U'",
+   "stickers": "URUBUFLLLBUFFFFFFFUUFRRRRRRRURBBBBBBBUULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "M U R U R' U' M' R' F R F'",
+     "htm": 11,
+     "qtm": 11,
+     "etm": 9,
+     "stm": 9,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "M U R U R' U' M' R' F R F'"
+  },
+  {
+   "id": "OLL_20",
+   "name": "OLL 20",
+   "group": "all corners oriented / all four edges flipped",
+   "setup": "R2 B2 R2 U' L2 F2 L2 U B2 U L2 R' L' F' U2 F2 R L'",
+   "stickers": "UBULURUFUFUFFFFFFFRURRRRRRRBUBBBBBBBLULLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw U R' U' M2 U R U' R' U' M'",
+     "htm": 11,
+     "qtm": 13,
+     "etm": 9,
+     "stm": 10,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "Rw U R' U' M2 U R U' R' U' M'"
+  },
+  {
+   "id": "OLL_21",
+   "name": "OLL 21",
+   "group": "3 corners twisted / no edges flipped",
+   "setup": "B2 R2 D R2 B2 U' L2 U2 L2 F2 L2 L' U L2 F2 L F2 U' L' U'",
+   "stickers": "LURUUULURUFUFFFFFFFRBRRRRRRUBUBBBBBBBLFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U2 R' U' R U R' U' R U' R'",
+     "htm": 11,
+     "qtm": 12,
+     "etm": 11,
+     "stm": 11,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "R U2 R' U' R U R' U' R U' R'"
+  },
+  {
+   "id": "OLL_22",
+   "name": "OLL 22",
+   "group": "3 corners twisted / no edges flipped",
+   "setup": "L2 D F2 D2 B2 R2 U' R2 D2 L2 B2 U R2 L' U R' F2 U R U L'",
+   "stickers": "BURUUUFURLFUFFFFFFFRBRRRRRRUBLBBBBBBULULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U2 R2 U' R2 U' R2 U2 R",
+     "htm": 9,
+     "qtm": 14,
+     "etm": 9,
+     "stm": 9,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "R U2 R2 U' R2 U' R2 U2 R"
+  },
+  {
+   "id": "OLL_23",
+   "name": "OLL 23",
+   "group": "2 corners twisted (adjacent) / no edges flipped",
+   "setup": "L2 D' L2 D F2 U' F2 F' U L2 U L2 U' F U",
+   "stickers": "FUBUUUUUURRRFFFFFFBBLRRRRRRULUBBBBBBLFFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R2 D' R U2 R' D R U2 R",
+     "htm": 9,
+     "qtm": 12,
+     "etm": 9,
+     "stm": 9,
+     "gen": "3GEN (U D R)"
+    }
+   ],
+   "primary": "R2 D' R U2 R' D R U2 R"
+  },
+  {
+   "id": "OLL_24",
+   "name": "OLL 24",
+   "group": "2 corners twisted (adjacent) / no edges flipped",
+   "setup": "L2 U' F2 U2 F2 U B2 U' F2 U2 F2 U L' U2 L B2 L' U2 L'",
+   "stickers": "LUUUUULUUUFFFFFFFFRRRRRRRRRBBUBBBBBBBLFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw U R' U' Rw' F R F'",
+     "htm": 8,
+     "qtm": 10,
+     "etm": 8,
+     "stm": 10,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "Rw U R' U' Rw' F R F'"
+  },
+  {
+   "id": "OLL_25",
+   "name": "OLL 25",
+   "group": "2 corners twisted (diagonal) / no edges flipped",
+   "setup": "R2 U F2 U' R2 U B2 U' R2 U F2 U' R' D L2 D' R' U'",
+   "stickers": "RUUUUUUUFLLUFFFFFFLFFRRRRRRRRBBBBBBBUBBLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "F' Rw U R' U' Rw' F R",
+     "htm": 8,
+     "qtm": 10,
+     "etm": 8,
+     "stm": 10,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "F' Rw U R' U' Rw' F R"
+  },
+  {
+   "id": "OLL_26",
+   "name": "OLL 26",
+   "group": "3 corners twisted / no edges flipped",
+   "setup": "U R2 B2 U' F2 U B2 U' F2 U R' U' L' U R' U' L U'",
+   "stickers": "RUUUUUBULULFFFFFFFUFFRRRRRRRRBBBBBBBUBLLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U2 R' U' R U' R'",
+     "htm": 7,
+     "qtm": 8,
+     "etm": 7,
+     "stm": 7,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "R U2 R' U' R U' R'"
+  },
+  {
+   "id": "OLL_27",
+   "name": "OLL 27",
+   "group": "3 corners twisted / no edges flipped",
+   "setup": "B2 U' L2 U L2 B2 D L2 D2 R2 R' D L D' R' D L U",
+   "stickers": "FULUUUUUBRRUFFFFFFRBURRRRRRBLUBBBBBBLFFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R' U R U2 R'",
+     "htm": 7,
+     "qtm": 8,
+     "etm": 7,
+     "stm": 7,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "R U R' U R U2 R'"
+  },
+  {
+   "id": "OLL_28",
+   "name": "OLL 28",
+   "group": "all corners oriented / 2 edges flipped (adjacent)",
+   "setup": "B2 U F2 R2 D R2 F2 L2 U R' L' F' U2 F R L' U' U2",
+   "stickers": "UUUUULUBUBUBFFFFFFLULRRRRRRFFFBBBBBBRRRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw U R' U' Rw' R U R U' R'",
+     "htm": 10,
+     "qtm": 12,
+     "etm": 10,
+     "stm": 12,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "Rw U R' U' Rw' R U R U' R'"
+  },
+  {
+   "id": "OLL_29",
+   "name": "OLL 29",
+   "group": "2 corners twisted (adjacent) / 2 edges flipped (adjacent)",
+   "setup": "D F2 D' F2 U2 F2 L2 U L2 U F2 U L' U2 B L' B' L U2 L U'",
+   "stickers": "LUUUURLFUUUFFFFFFFRURRRRRRRBBUBBBBBBBLFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R' U' R U' R' F' U' F R U R'",
+     "htm": 13,
+     "qtm": 13,
+     "etm": 13,
+     "stm": 13,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U R' U' R U' R' F' U' F R U R'"
+  },
+  {
+   "id": "OLL_30",
+   "name": "OLL 30",
+   "group": "2 corners twisted (adjacent) / 2 edges flipped (adjacent)",
+   "setup": "L2 B2 D' F2 U' R2 D L2 D2 R2 B2 U2 F' U' F' L2 U' R' B R' U",
+   "stickers": "LULUUBURURURFFFFFFBUURRRRRRBLFBBBBBBUFFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "F R' F R2 U' R' U' R U R' F2",
+     "htm": 11,
+     "qtm": 13,
+     "etm": 11,
+     "stm": 11,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "F R' F R2 U' R' U' R U R' F2"
+  },
+  {
+   "id": "OLL_31",
+   "name": "OLL 31",
+   "group": "2 corners twisted (adjacent) / 2 edges flipped (adjacent)",
+   "setup": "L2 B2 U' B2 U B2 R2 L2 U' F2 U R2 U F' U2 F U2 L F L'",
+   "stickers": "LUULUULFUUUFFFFFFFRRRRRRRRRBBUBBBBBBBUFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R' U' F U R U' R' F' R",
+     "htm": 9,
+     "qtm": 9,
+     "etm": 9,
+     "stm": 9,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R' U' F U R U' R' F' R"
+  },
+  {
+   "id": "OLL_32",
+   "name": "OLL 32",
+   "group": "2 corners twisted (adjacent) / 2 edges flipped (adjacent)",
+   "setup": "U L2 U B2 U' L2 D R2 L2 B2 L2 U F' R2 F' U2 L' B' L U2",
+   "stickers": "UULUULUBLBUUFFFFFFBUFRRRRRRUFFBBBBBBRRRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "L U F' U' L' U L F L'",
+     "htm": 9,
+     "qtm": 9,
+     "etm": 9,
+     "stm": 9,
+     "gen": "3GEN (U L F)"
+    }
+   ],
+   "primary": "L U F' U' L' U L F L'"
+  },
+  {
+   "id": "OLL_33",
+   "name": "OLL 33",
+   "group": "2 corners twisted (adjacent) / 2 edges flipped (diagonal)",
+   "setup": "F2 U' R2 U2 F2 U F2 L2 U R2 U' L2 U' F' R F U' F' R' F'",
+   "stickers": "LBUUUULFUUUFFFFFFFRRRRRRRRRBUUBBBBBBBLFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R' U' R' F R F'",
+     "htm": 8,
+     "qtm": 8,
+     "etm": 8,
+     "stm": 8,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U R' U' R' F R F'"
+  },
+  {
+   "id": "OLL_34",
+   "name": "OLL 34",
+   "group": "2 corners twisted (adjacent) / 2 edges flipped (diagonal)",
+   "setup": "U2 F2 U L2 U' F2 U F2 U F2 U' L2 U L2 U2 L' U' B' U B L' F2 L2 U",
+   "stickers": "LLLUUUURURURFFFFFFBBURRRRRRBUFBBBBBBUFFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R2 U' R' F R U R U' F'",
+     "htm": 11,
+     "qtm": 12,
+     "etm": 11,
+     "stm": 11,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U R2 U' R' F R U R U' F'"
+  },
+  {
+   "id": "OLL_35",
+   "name": "OLL 35",
+   "group": "2 corners twisted (diagonal) / 2 edges flipped (adjacent)",
+   "setup": "R2 B2 L2 D2 R2 F2 U' L2 U' R2 D F' D R2 U2 L' B' U' L U' U2",
+   "stickers": "UFFRUURUUUBBFFFFFFLLURRRRRRLUFBBBBBBRUBLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U2 R2 F R F' R U2 R'",
+     "htm": 9,
+     "qtm": 12,
+     "etm": 9,
+     "stm": 9,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U2 R2 F R F' R U2 R'"
+  },
+  {
+   "id": "OLL_36",
+   "name": "OLL 36",
+   "group": "2 corners twisted (diagonal) / 2 edges flipped (adjacent)",
+   "setup": "U2 F2 L2 D' L2 B2 L2 D2 B2 D' F2 U R2 F' L U' L' U L' F",
+   "stickers": "UURLUUFFULUFFFFFFFRRBRRRRRRUBBBBBBBBLUULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "L' U' L U' L' U L U L F' L' F",
+     "htm": 12,
+     "qtm": 12,
+     "etm": 12,
+     "stm": 12,
+     "gen": "3GEN (U L F)"
+    }
+   ],
+   "primary": "L' U' L U' L' U L U L F' L' F"
+  },
+  {
+   "id": "OLL_37",
+   "name": "OLL 37",
+   "group": "2 corners twisted (diagonal) / 2 edges flipped (adjacent)",
+   "setup": "D2 R2 U' F2 U' F2 D R2 D L2 U2 L2 L' B L2 B' L' U2",
+   "stickers": "UUFUULRBUUUBFFFFFFLUURRRRRRLFFBBBBBBRRBLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "F R' F' R U R U' R'",
+     "htm": 8,
+     "qtm": 8,
+     "etm": 8,
+     "stm": 8,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "F R' F' R U R U' R'"
+  },
+  {
+   "id": "OLL_38",
+   "name": "OLL 38",
+   "group": "2 corners twisted (diagonal) / 2 edges flipped (adjacent)",
+   "setup": "R2 D L2 F2 D R2 B2 U R2 D L2 D2 R' B R' B2 L' B' L' U",
+   "stickers": "FUUUUBURRRUBFFFFFFUUBRRRRRRLLUBBBBBBLFFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R' U R U' R' U' R' F R F'",
+     "htm": 12,
+     "qtm": 12,
+     "etm": 12,
+     "stm": 12,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U R' U R U' R' U' R' F R F'"
+  },
+  {
+   "id": "OLL_39",
+   "name": "OLL 39",
+   "group": "2 corners twisted (diagonal) / 2 edges flipped (diagonal)",
+   "setup": "D F2 U F2 U F2 U2 F2 L' F U' B' U B F' L U' D' U' U",
+   "stickers": "FLUUUUURRRUBFFFFFFUBBRRRRRRLUUBBBBBBLFFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "L F' L' U' L U F U' L'",
+     "htm": 9,
+     "qtm": 9,
+     "etm": 9,
+     "stm": 9,
+     "gen": "3GEN (U L F)"
+    }
+   ],
+   "primary": "L F' L' U' L U F U' L'"
+  },
+  {
+   "id": "OLL_40",
+   "name": "OLL 40",
+   "group": "2 corners twisted (diagonal) / 2 edges flipped (diagonal)",
+   "setup": "U' B2 U' B2 U' B2 U2 B2 L2 L' B' U F U' B F' L' U'",
+   "stickers": "UBRUUUFFULUFFFFFFFRRBRRRRRRUUBBBBBBBLLULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R' F R U R' U' F' U R",
+     "htm": 9,
+     "qtm": 9,
+     "etm": 9,
+     "stm": 9,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R' F R U R' U' F' U R"
+  },
+  {
+   "id": "OLL_41",
+   "name": "OLL 41",
+   "group": "2 corners twisted (adjacent) / 2 edges flipped (adjacent)",
+   "setup": "B2 L2 U' B2 D' F2 U2 B2 L2 F2 L2 F2 D U' R' F' L B2 U2 L' F R U",
+   "stickers": "FUBUUBURURURFFFFFFBULRRRRRRULUBBBBBBLFFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R' U R U2 R' F R U R' U' F'",
+     "htm": 13,
+     "qtm": 14,
+     "etm": 13,
+     "stm": 13,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U R' U R U2 R' F R U R' U' F'"
+  },
+  {
+   "id": "OLL_42",
+   "name": "OLL 42",
+   "group": "2 corners twisted (adjacent) / 2 edges flipped (adjacent)",
+   "setup": "U B2 R2 D' L2 F2 U B2 U F2 D2 F2 L2 R' B L' F2 U2 L B' R' U'",
+   "stickers": "URUUUFBUFULUFFFFFFLUFRRRRRRRURBBBBBBBBLLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R' U' R U' R' U2 R F R U R' U' F'",
+     "htm": 13,
+     "qtm": 14,
+     "etm": 13,
+     "stm": 13,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R' U' R U' R' U2 R F R U R' U' F'"
+  },
+  {
+   "id": "OLL_43",
+   "name": "OLL 43",
+   "group": "2 corners twisted (adjacent) / 2 edges flipped (adjacent)",
+   "setup": "L2 D2 B2 U' R2 D R2 L2 D L2 U' B2 U2 L2 F' L' U' L U F",
+   "stickers": "BUULUUFFULUFFFFFFFRRRRRRRRRBBLBBBBBBUUULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "F' U' L' U L F",
+     "htm": 6,
+     "qtm": 6,
+     "etm": 6,
+     "stm": 6,
+     "gen": "3GEN (U L F)"
+    }
+   ],
+   "primary": "F' U' L' U L F"
+  },
+  {
+   "id": "OLL_44",
+   "name": "OLL 44",
+   "group": "2 corners twisted (adjacent) / 2 edges flipped (adjacent)",
+   "setup": "F2 D L2 D2 F2 U' F2 D' B2 D2 F2 R2 U' B' L U L' U' B' U2",
+   "stickers": "UUFUULUBBBULFFFFFFUUURRRRRRLFFBBBBBBRRRLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "F U R U' R' F'",
+     "htm": 6,
+     "qtm": 6,
+     "etm": 6,
+     "stm": 6,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "F U R U' R' F'"
+  },
+  {
+   "id": "OLL_45",
+   "name": "OLL 45",
+   "group": "2 corners twisted (adjacent) / 2 edges flipped (diagonal)",
+   "setup": "F2 U F2 R2 U F2 U' F2 U' R2 U F2 U' F' U R U' R' F'",
+   "stickers": "BBUUUUFFULUFFFFFFFRRRRRRRRRBULBBBBBBULULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "F R U R' U' F'",
+     "htm": 6,
+     "qtm": 6,
+     "etm": 6,
+     "stm": 6,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "F R U R' U' F'"
+  },
+  {
+   "id": "OLL_46",
+   "name": "OLL 46",
+   "group": "2 corners twisted (adjacent) / 2 edges flipped (diagonal)",
+   "setup": "U' F2 R2 F2 R2 U F2 R2 U' F2 U2 R' U' R F' U R U' F' U' U2",
+   "stickers": "UUFRULUUBBBLFFFFFFUUURRRRRRLFFBBBBBBRURLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R' U' R' F R F' U R",
+     "htm": 8,
+     "qtm": 8,
+     "etm": 8,
+     "stm": 8,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R' U' R' F R F' U R"
+  },
+  {
+   "id": "OLL_47",
+   "name": "OLL 47",
+   "group": "3 corners twisted / 2 edges flipped (adjacent)",
+   "setup": "L2 F2 D' B2 D B2 D' F2 U' B2 U2 L2 U' B2 F' D2 F R L2 B' R' B2 U2",
+   "stickers": "RUFRUURBBUULFFFFFFULURRRRRRLFUBBBBBBFUBLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "F' L' U' L U L' U' L U F",
+     "htm": 10,
+     "qtm": 10,
+     "etm": 10,
+     "stm": 10,
+     "gen": "3GEN (U L F)"
+    }
+   ],
+   "primary": "F' L' U' L U L' U' L U F"
+  },
+  {
+   "id": "OLL_48",
+   "name": "OLL 48",
+   "group": "3 corners twisted / 2 edges flipped (adjacent)",
+   "setup": "L2 B2 D2 F2 D' F2 D' B2 U F2 U' L2 U F' L2 F' R' L2 F R F2",
+   "stickers": "BURUURFFRLUUFFFFFFFUBRRRRRRUBLBBBBBBULULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "F R U R' U' R U R' U' F'",
+     "htm": 10,
+     "qtm": 10,
+     "etm": 10,
+     "stm": 10,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "F R U R' U' R U R' U' F'"
+  },
+  {
+   "id": "OLL_49",
+   "name": "OLL 49",
+   "group": "3 corners twisted / 2 edges flipped (adjacent)",
+   "setup": "F2 D' B2 R2 F2 U' L2 U' R2 B2 F2 L2 D' F' R2 F2 L' F' R2 F2 L'",
+   "stickers": "BURLUUFFRLUUFFFFFFFRBRRRRRRUBLBBBBBBUUULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw U' Rw2 U Rw2 U Rw2 U' Rw",
+     "htm": 9,
+     "qtm": 20,
+     "etm": 9,
+     "stm": 14,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "Rw U' Rw2 U Rw2 U Rw2 U' Rw"
+  },
+  {
+   "id": "OLL_50",
+   "name": "OLL 50",
+   "group": "3 corners twisted / 2 edges flipped (adjacent)",
+   "setup": "B2 D F2 R2 B2 U L2 U' R2 B2 F2 L2 D' B' L2 F2 L' B' L2 F2 L'",
+   "stickers": "BBRLUUFURLFUFFFFFFFRBRRRRRRUULBBBBBBUUULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw' U Rw2 U' Rw2 U' Rw2 U Rw'",
+     "htm": 9,
+     "qtm": 20,
+     "etm": 9,
+     "stm": 14,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "Rw' U Rw2 U' Rw2 U' Rw2 U Rw'"
+  },
+  {
+   "id": "OLL_51",
+   "name": "OLL 51",
+   "group": "3 corners twisted / 2 edges flipped (diagonal)",
+   "setup": "F2 R2 B2 L2 U B2 U' F2 D B2 D' L2 D F2 L2 F' L' F' R2 U F L F L2",
+   "stickers": "BBRUUUFFRLUUFFFFFFFRBRRRRRRUULBBBBBBULULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Fw R U R' U' R U R' U' Fw'",
+     "htm": 10,
+     "qtm": 12,
+     "etm": 10,
+     "stm": 12,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "Fw R U R' U' R U R' U' Fw'"
+  },
+  {
+   "id": "OLL_52",
+   "name": "OLL 52",
+   "group": "3 corners twisted / 2 edges flipped (diagonal)",
+   "setup": "R2 D' F2 D' L2 D' L2 F2 U L2 D' U' R' B' D' B D2 L2 D' R' U2",
+   "stickers": "RUFRULRUBUBLFFFFFFUUURRRRRRLFUBBBBBBFUBLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R' U R U' B U' B' R'",
+     "htm": 10,
+     "qtm": 10,
+     "etm": 10,
+     "stm": 10,
+     "gen": "3GEN (U R B)"
+    }
+   ],
+   "primary": "R U R' U R U' B U' B' R'"
+  },
+  {
+   "id": "OLL_53",
+   "name": "OLL 53",
+   "group": "3 corners twisted / 2 edges flipped (adjacent)",
+   "setup": "R2 L2 D' L2 U' B2 R2 D' R2 D R2 L2 F2 F' L' F U2 L' U L U' L' U'",
+   "stickers": "RRRBUULULBLFFFFFFFUFURRRRRRFUBBBBBBBUUULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw' U' R U' R' U R U' R' U2 Rw",
+     "htm": 11,
+     "qtm": 14,
+     "etm": 11,
+     "stm": 13,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "Rw' U' R U' R' U R U' R' U2 Rw"
+  },
+  {
+   "id": "OLL_54",
+   "name": "OLL 54",
+   "group": "3 corners twisted / 2 edges flipped (adjacent)",
+   "setup": "B2 U' L2 U L2 U B2 U L2 U' L2 U' L2 L' F U F' L U2 L' U L' U'",
+   "stickers": "RURBUULLLBUFFFFFFFUFURRRRRRFRBBBBBBBUUULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw U R' U R U' R' U R U2 Rw'",
+     "htm": 11,
+     "qtm": 14,
+     "etm": 11,
+     "stm": 13,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "Rw U R' U R U' R' U R U2 Rw'"
+  },
+  {
+   "id": "OLL_55",
+   "name": "OLL 55",
+   "group": "3 corners twisted / 2 edges flipped (diagonal)",
+   "setup": "L2 U F2 D2 F2 L2 D' L2 B2 F2 B' R B' D2 U' F2 L' U' L' U' U",
+   "stickers": "LULFUBRURFRBFFFFFFUUURRRRRRBLFBBBBBBUUULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U2 R2 U' R U' R' U2 F R F'",
+     "htm": 11,
+     "qtm": 14,
+     "etm": 11,
+     "stm": 11,
+     "gen": "3GEN (U R F)"
+    }
+   ],
+   "primary": "R U2 R2 U' R U' R' U2 F R F'"
+  },
+  {
+   "id": "OLL_56",
+   "name": "OLL 56",
+   "group": "3 corners twisted / 2 edges flipped (diagonal)",
+   "setup": "U' F2 D L2 B2 U F2 R2 B2 L2 U L' F R' F R U F2 U' L' U",
+   "stickers": "LLLUUURRRFUBFFFFFFUBURRRRRRBUFBBBBBBUFULLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "Rw U Rw' U R U' R' U R U' R' Rw U' Rw'",
+     "htm": 14,
+     "qtm": 18,
+     "etm": 14,
+     "stm": 18,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "Rw U Rw' U R U' R' U R U' R' Rw U' Rw'"
+  },
+  {
+   "id": "OLL_57",
+   "name": "OLL 57",
+   "group": "all corners oriented / 2 edges flipped (diagonal)",
+   "setup": "U2 F2 D B2 L2 F2 U B2 R2 F' U' L U L2 F L U' L' U",
+   "stickers": "ULUUUUURURURFFFFFFBBBRRRRRRLULBBBBBBFFFLLLLLLDDDDDDDDD",
+   "algs": [
+    {
+     "seq": "R U R' U' M' U R U' Rw'",
+     "htm": 9,
+     "qtm": 10,
+     "etm": 8,
+     "stm": 9,
+     "gen": "2GEN (U R)"
+    }
+   ],
+   "primary": "R U R' U' M' U R U' Rw'"
+  }
+ ]
+}

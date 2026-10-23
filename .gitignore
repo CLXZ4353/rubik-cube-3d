@@ -1,8 +1,15 @@
 node_modules/
 package-lock.json
 
-# generated pre-computed solver tables (regenerate with npm run pregen)
-data/
+# generated pre-computed solver tables (regenerate with npm run pregen).
+# The small curated algorithm datasets are checked in so a clone works
+# without regenerating anything.
+data/*
+!data/algdb/
+!data/algdb/**
+!data/cases/
+!data/cases/keys/
+!data/cases/keys/**
 
 # screenshots + logs from the browser tests. shots/ is the one kept in the repo:
 # README.md embeds shots/02_after_scramble.png as the preview image.

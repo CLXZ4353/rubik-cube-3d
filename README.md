@@ -1,11 +1,14 @@
-# Rubik's Cube 3D
+# CubeDB — Rubik's Cube algorithms and trainers
 
 [![Live demo](https://img.shields.io/badge/live%20demo-rubik--cube--3d.rubik--cube--3d.workers.dev-007acc?style=for-the-badge)](https://rubik-cube-3d.rubik-cube-3d.workers.dev/)
 
 **Try it live → https://rubik-cube-3d.rubik-cube-3d.workers.dev/**
 
-Interactive 3D 3×3 Rubik's Cube simulator with a **real solver** (no faked
-algorithms). Built with plain **Three.js** and vanilla JS modules.
+A local-first speedcubing site: 57 OLL and 21 PLL cases with the algorithms
+people actually use, timed trainers, two-sided PLL recognition, a cross
+trainer, and a replay-verified scramble analyzer. The original 3D cube with a
+**real two-phase solver** (no faked algorithms) still lives at `/3d`. Everything
+is plain HTML/CSS/ES modules — no build step and no tracking.
 
 ![cube preview](shots/02_after_scramble.png)
 
@@ -32,9 +35,9 @@ path. Without them it still solves exactly, but with a weaker phase-2
 heuristic: **a few seconds per solve instead of milliseconds** — that fallback
 is the only noticeably slow path, so keep those two files if you can.
 
-`data/` is generated output (git-ignored), and both pregen scripts rewrite
-`data/pdb_meta.json`: size + FNV-1a hash + the `tablesVersion()` that the file
-was built for. The worker fetches that manifest first, then fetches
+The PDB tables in `data/` are generated output (git-ignored), and both pregen
+scripts rewrite `data/pdb_meta.json`: size + FNV-1a hash + the `tablesVersion()`
+that the file was built for. The worker fetches that manifest first, then fetches
 `/data/<name>.pdb?v=<v>` and drops any file whose stamped `v` is stale for the
 current code or whose bytes hash differently — it rebuilds those tables locally
 instead of pruning with wrong distances. `/data/*.pdb` is served with a year of
@@ -43,9 +46,11 @@ because it carries the version. If you change the move table, the coordinates,
 or a pregen script, re-run **both** pregen scripts so every file gets the new
 `v`.
 
-`data/` is git-ignored, so a git-based deploy ships no tables at all: run
-`npm run pregen && npm run pregenCE` on the host (or ship `data/` out-of-band).
-Put `npm run check` in CI — it exits 1 when `jointCE.pdb` is missing, stamped
+The PDB tables are git-ignored, so a git-based deploy ships no solver tables at
+all: run `npm run pregen && npm run pregenCE` on the host (or ship `data/`
+out-of-band). The small curated JSON in `data/algdb/` and `data/cases/keys/` is
+checked in, so the database and trainers work on a fresh clone. Put
+`npm run check` in CI — it exits 1 when `jointCE.pdb` is missing, stamped
 for another code version, or hashed differently, so a misconfigured deploy fails
 loudly instead of quietly solving in seconds.
 
@@ -93,8 +98,11 @@ the animation state.
 
 ```
 index.html                # entry point, import-map for `three`
-styles.css                # UI styling
+styles.css                # base tokens + the 3D view
+styles/                   # SPA chrome, database and trainer styles
 vendor/                   # three.module.js + RoundedBoxGeometry.js, vendored
+data/algdb/               # curated OLL/PLL datasets (tracked)
+data/cases/keys/          # recognition keys (tracked)
 src/
   constants.js            # geometry, colours, timing, camera defaults
   moves.js                # Singmaster parser + 24 exact integer rotation
@@ -114,7 +122,7 @@ src/
   InputController.js      # keyboard + pointer input, queues moves to Cube
   UI.js                   # DOM buttons, status line, solved badge, help
   main.js                 # wires everything; owns the worker; SAB cancel
-data/                     # pre-computed PDB files (~120 MB)
+data/                     # curated JSON (tracked) + generated PDB files (ignored)
 tests/
   logic.test.mjs          # 11 assertions across moves, states, solver
   solvecheck.mjs          # 34 two-phase solved-state checks (face, slice,
@@ -233,20 +241,62 @@ the probes every CDN/updater sends cannot leak descriptors until the process
 dies with `EMFILE`. A stream that fails mid-read just ends the response, so the
 `Content-Length` mismatch tells the client the transfer was truncated.
 
+## The multi-page app (router, datasets, trainers)
+
+The site is one document plus a router: `src/app/app.js` resolves the path in
+`src/app/router.js`, loads that route's page module through
+`src/app/routes.js`, and paints the shell (`src/app/shell.js`). A page module
+is imported only for the route you opened, so `/t`, `/cross`, `/analyze` and
+the case pages never touch Three.js — the gate is
+`tests/nothree.test.mjs`, which reads the import graph from the source.
+
+| Path | Page |
+| --- | --- |
+| `/` | CubeDB home: trainer tiles, set tiles, featured cases, search |
+| `/3d` | the cube (the only route that loads `vendor/three.module.js`) |
+| `/a`, `/a/:puzzle`, `/a/:puzzle/:set`, `/a/:puzzle/:set/:case` | index → sets → cases → card |
+| `/t` | algorithm trainer (case picker, 200 ms Stackmat gate, times in the store) |
+| `/t/pllrecog` | 2-sided PLL recognition drill (masked nets, scored) |
+| `/cross` | cross trainer, difficulty 1–7 (length is proved by the BFS) |
+| `/analyze` | scramble analyzer (counters + verified solutions) |
+| `/Beginner`, `/algsheet`, `/settings`, `/privacy` | guide, personal sheet, theme, privacy |
+| anything else | in-app Not Found page, inside the shell |
+
+Unknown paths are answered by the server with `index.html` (`server.mjs`, for
+extension-less paths only) and by Cloudflare with
+`"not_found_handling": "single-page-application"` in `wrangler.jsonc`, so the
+router — not the browser — decides what an unknown URL means. `tools/build_dist.mjs`
+copies `index.html`, `styles.css`, `styles/`, `favicon.svg`, `_headers`, `src/`,
+`vendor/` and `data/` (JSON + any prebuilt PDB tables) into `dist/` and writes
+`dist/manifest.json` with the sizes and hashes.
+
+**Datasets** live in `data/algdb/3x3/{OLL,PLL}.json` plus
+`data/algdb/3x3/index.json`, built by `npm run dataset` (`tools/gen_dataset.mjs`).
+OLL is the 57 orientations; PLL is stored as **21** named speedcubing classes
+(under pre- and post-AUF equivalence, `q = Uᵃ · p · Uᵇ`).
+Each case stores `setup` (the inverse of its standard algorithm), the sticker
+net, and every algorithm with htm/qtm/etm/stm/gen. `tools/validate_algs.mjs`
+re-checks all of it — setup against the stored stickers, each algorithm by
+solving the case it is attached to, the four metrics recomputed, and no two
+cases in a set sharing a recognition hash — and exits non-zero if any is wrong.
+Recognition keys live in `data/cases/keys/{OLL,PLL}.json` (`npm run keys`).
+
+**Nothing is sent anywhere.** Times, sessions, progress and the personal sheet
+live in `localStorage`, keyed by namespace (`session:3x3/OLL`, `progress:3x3/OLL`,
+`sheet:3x3/OLL`, `history:3x3/PLL`, plus the theme in `settings:*`). The privacy
+page (`/privacy`) lists those stores and says so; there is no analytics, no
+advertising, no tracking scripts and no cookies.
+
 ## Tests
 
 ```
-node tests/logic.test.mjs       # 13 assertions: moves, states, solver, notation, progress
-node tests/solvecheck.mjs       # 34 two-phase cases, all replay-verified
-node tests/timer.test.mjs       # countdown, setLimit clamping, timeout callback
-node tests/timeout_browser.mjs  # Playwright: Solve auto-stops the clock, TIMEOUT pop
-node tests/solvecheck2.mjs      # 18 seeded 20-movers (avg 23.3 moves, ~5ms)
-node tests/pregen_two_phase.mjs # writes data/*.pdb (see note above)
-node tests/pdbvalidate.mjs      # Playwright: manifest v/hash gates the fetched PDBs
-node tests/undo_browser.mjs     # Playwright: undo mid-animation counts only applied moves
-node tests/ux_browser.mjs       # Playwright: Solve waits when busy, key cap, help card, clock
-node tests/interact.mjs         # Playwright-driven browser session
-node tests/solvebrowser2.mjs http://localhost:9101/ shots   # solve flow E2E
+npm test                        # orientation, logic, solvecheck, timer, nxn, analyze,
+                                # router, nothree, dataset validator
+node tools/validate_algs.mjs    # 78 cases, 78 algorithms, 0 problems
+node tests/nxn.test.mjs         # 2x2..5x5 engine: layers, states, scramble+inverse
+node tests/spa_browser.mjs http://localhost:9123/ spa_shots
+                                # Playwright: 17 routes render in the shell, and the
+                                # non-3D routes never request three.module.js
 ```
 
 ## Notes on Windows

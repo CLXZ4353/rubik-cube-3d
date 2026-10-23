@@ -2,76 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>Rubik's Cube 3D</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="./favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CubeDB — cubes, cases, algorithms</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/styles/app.css" />
+  <link rel="stylesheet" href="/styles/cases.css" />
+  <link rel="stylesheet" href="/styles/trainer.css" />
+  <link rel="icon" href="/favicon.svg" />
   <script type="importmap">
-    { "imports": { "three": "./vendor/three.module.js" } }
+    { "imports": { "three": "/vendor/three.module.js" } }
   </script>
 </head>
 <body>
-  <canvas id="scene"></canvas>
+  <!-- The SPA mount point. Everything the router paints lives inside it. -->
+  <div id="app"></div>
 
-  <div id="ui">
-    <header id="topbar">
-      <h1>Rubik&rsquo;s Cube</h1>
-      <span id="solved-badge" class="badge hidden">SOLVED</span>
-    </header>
+  <!-- The 3D cube. Its Three.js engine is imported lazily by CubeApp, so
+       opening / never touches it, and it is hidden until /3d opens it. -->
+  <div id="cube" hidden>
+    <canvas id="scene"></canvas>
 
-    <div id="controls">
-      <button id="btn-scramble" class="btn primary">Scramble</button>
-      <button id="btn-solve" class="btn primary" disabled>Solve</button>
-      <button id="btn-cancel" class="btn danger hidden">Cancel</button>
-      <button id="btn-undo" class="btn">Undo</button>
-      <button id="btn-redo" class="btn">Redo</button>
-      <button id="btn-reset" class="btn">Reset</button>
-      <button id="btn-time-down" class="btn icon" title="Less time">&minus; 5s</button>
-      <button id="btn-time-up" class="btn icon" title="More time">+ 5s</button>
-      <button id="btn-start" class="btn primary">Start</button>
-      <button id="btn-stop" class="btn danger hidden">Stop</button>
-      <button id="btn-help" class="btn icon" title="Help (H)">?</button>
+    <div id="ui">
+      <header id="topbar">
+        <h1>Rubik&rsquo;s Cube</h1>
+        <span id="solved-badge" class="badge hidden">SOLVED</span>
+      </header>
+
+      <div id="controls">
+        <button id="btn-scramble" class="btn primary">Scramble</button>
+        <button id="btn-solve" class="btn primary" disabled>Solve</button>
+        <button id="btn-cancel" class="btn danger hidden">Cancel</button>
+        <button id="btn-undo" class="btn">Undo</button>
+        <button id="btn-redo" class="btn">Redo</button>
+        <button id="btn-reset" class="btn">Reset</button>
+        <button id="btn-time-down" class="btn icon" title="Less time">&minus; 5s</button>
+        <button id="btn-time-up" class="btn icon" title="More time">+ 5s</button>
+        <button id="btn-start" class="btn primary">Start</button>
+        <button id="btn-stop" class="btn danger hidden">Stop</button>
+        <button id="btn-help" class="btn icon" title="Help (H)">?</button>
+      </div>
+
+      <div id="status">
+        <span id="move-count">Moves&nbsp;0</span>
+        <span id="face-indicator">Front&nbsp;<b id="face-current">F</b></span>
+        <span id="solver-status">Solver: initializing&hellip;</span>
+        <span id="timer">Timer 1:00</span>
+      </div>
     </div>
 
-    <div id="status">
-      <span id="move-count">Moves&nbsp;0</span>
-      <span id="face-indicator">Front&nbsp;<b id="face-current">F</b></span>
-      <span id="solver-status">Solver: initializing&hellip;</span>
-      <span id="timer">Timer 1:00</span>
+    <div id="help" class="hidden">
+      <h2>Controls</h2>
+      <div class="help-grid">
+        <div>
+          <h3>Turns</h3>
+          <p><b>U D L R F B</b> &mdash; turn the face in <b>your</b> point of view (they follow the camera &mdash; no <b>y</b> needed)</p>
+          <p><b>Shift</b> + key &mdash; counter-clockwise</p>
+          <p>Hold <b>2</b> + key &mdash; double turn</p>
+          <p><b>M E S</b> &mdash; middle slices (absolute)</p>
+          <p><b>x y z</b> &mdash; rotate the whole cube (absolute)</p>
+          <p>The centre cubie of the face you are looking at blinks.</p>
+        </div>
+        <div>
+          <h3>Actions</h3>
+          <p><b>Ctrl/⌘ Z</b> &mdash; undo</p>
+          <p><b>Ctrl/⌘ Y</b> &mdash; redo</p>
+          <p><b>Esc</b> &mdash; reset to solved</p>
+          <p><b>H</b> &mdash; toggle this help</p>
+          <p><b>Start</b> &mdash; timer mode: count down from the set time</p>
+          <p><b>Stop</b> &mdash; freeze the timer (only while it runs)</p>
+          <p><b>&minus; 5s / + 5s</b> &mdash; change the time in the timer
+        </div>
+        <div>
+          <h3>Mouse / Touch</h3>
+          <p>Drag &mdash; orbit the cube</p>
+          <p>Scroll / pinch &mdash; zoom</p>
+        </div>
+      </div>
+      <p class="hint">Press <b>H</b> or tap <b>?</b> to close.</p>
     </div>
   </div>
 
-  <div id="help" class="hidden">
-    <h2>Controls</h2>
-    <div class="help-grid">
-      <div>
-        <h3>Turns</h3>
-        <p><b>U D L R F B</b> &mdash; turn the face in <b>your</b> point of view (they follow the camera &mdash; no <b>y</b> needed)</p>
-        <p><b>Shift</b> + key &mdash; counter-clockwise</p>
-        <p>Hold <b>2</b> + key &mdash; double turn</p>
-        <p><b>M E S</b> &mdash; middle slices (absolute)</p>
-        <p><b>x y z</b> &mdash; rotate the whole cube (absolute)</p>
-        <p>The centre cubie of the face you are looking at blinks.</p>
-      </div>
-      <div>
-        <h3>Actions</h3>
-        <p><b>Ctrl/⌘ Z</b> &mdash; undo</p>
-        <p><b>Ctrl/⌘ Y</b> &mdash; redo</p>
-        <p><b>Esc</b> &mdash; reset to solved</p>
-        <p><b>H</b> &mdash; toggle this help</p>
-        <p><b>Start</b> &mdash; timer mode: count down from the set time</p>
-        <p><b>Stop</b> &mdash; freeze the timer (only while it runs)</p>
-        <p><b>&minus; 5s / + 5s</b> &mdash; change the time in the timer
-      </div>
-      <div>
-        <h3>Mouse / Touch</h3>
-        <p>Drag &mdash; orbit the cube</p>
-        <p>Scroll / pinch &mdash; zoom</p>
-      </div>
-    </div>
-    <p class="hint">Press <b>H</b> or tap <b>?</b> to close.</p>
-  </div>
-
-  <script type="module" src="./src/main.js"></script>
+  <script type="module" src="/src/app/app.js"></script>
 </body>
 </html>
